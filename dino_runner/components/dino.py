@@ -71,15 +71,12 @@ class Dino:
 
 
         if self.dino_run:
-            print("corre")
             self.run()
 
         elif self.dino_jump:
-            print("Pular")
             self.jump()
 
         elif self.dino_duck:
-            print("abaixar")
             self.duck()
 
         
