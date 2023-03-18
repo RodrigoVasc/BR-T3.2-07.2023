@@ -19,7 +19,7 @@ class Game:
         
         self.player = Dino()
         #
-        self.player = ObstacleManager()
+        self.obstacle_manager = ObstacleManager()
 
 
 
@@ -45,8 +45,6 @@ class Game:
         self.player.update(user_input)
 
         self.obstacle_manager.update(self)    
-        
-        self.obstacle_manager.update(self)
         
     def draw(self):
         self.clock.tick(FPS)
