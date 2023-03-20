@@ -6,6 +6,7 @@ from dino_runner.utils.constants import SMALL_CACTUS, LARGE_CACTUS, BIRD
 class ObstacleManager():
     def __init__(self):
         self.obstacle = []
+    
     def update(self, game):
         self.num = random.randint(0,2)
         if len (self.obstacle) == 0:
@@ -15,7 +16,7 @@ class ObstacleManager():
                 self.obstacle.append(Cactus(LARGE_CACTUS, 300))
             if self.num == 2:
                 self.obstacle.append(Bird(BIRD))
-                
+    
         for obstacle in self.obstacle:
             obstacle.update(game.game_speed, self.obstacle)
             if game.player.dino_rect.colliderect(obstacle.rect):    

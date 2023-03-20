@@ -6,10 +6,10 @@ class Bird(Obstacle):
     def __init__(self, images):
         self.type = 0
         super().__init__(images, self.type)
-        self.rect.y = 250
+        self.rect.y = random.randint(200, 320)
         self.image = images
         self.contador = 0
-        
+
     def draw(self, screen):
         if self.contador <= 5:
             screen.blit(self.image[0], (self.rect.x, self.rect.y))
