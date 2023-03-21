@@ -1,6 +1,6 @@
 import pygame
 
-from dino_runner.utils.constants import BG, CLOUD, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, FONT_STYLE
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, FONT_STYLE
 from dino_runner.components.dino import Dino
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 
@@ -67,7 +67,7 @@ class Game:
         self.score += 1
     
         if self.score % 100 == 0:
-            self.game_speed += 5
+            self.game_speed += 2
 
     def draw(self):
         self.clock.tick(FPS)
@@ -76,9 +76,8 @@ class Game:
         self.player.draw(self.screen)
         self.draw_score()
         self.draw_scoreRank()
+        self.draw_death()
         self.obstacle_manager.draw(self.screen)
-        self.count_morte = self.font.render(f'Death: {self.death_count}',True, (0,0,0))
-
         pygame.display.update()
         pygame.display.flip()
 
@@ -94,7 +93,12 @@ class Game:
         textMax_rect = self.textMax.get_rect()
         textMax_rect.center = (750, 50)
         self.screen.blit(self.textMax, textMax_rect)
-        
+
+    def draw_death(self):
+        self.textDeath = self.font.render(f'Death: {self.death_count}',True, (0,0,0))
+        textDeath_rect = self.textDeath.get_rect()
+        textDeath_rect.center = (750, 50)
+
     def draw_background(self):
         image_width = BG.get_width()
         self.screen.blit(BG, (self.x_pos_bg, self.y_pos_bg))
@@ -104,8 +108,8 @@ class Game:
             self.x_pos_bg = 0
         self.x_pos_bg -= self.game_speed
 
-    def render_text(self, message, x, y, font):
-        text = font.render(message, True, (0,0,0))
+    def render_text(self, message, x, y):
+        text = self.font.render(message, True, (0,0,0))
         text_rect = text.get_rect()
         text_rect.center = (x, y)
         self.screen.blit(text, text_rect)
@@ -116,15 +120,16 @@ class Game:
         half_screen_height = SCREEN_HEIGHT // 2
         half_screen_width = SCREEN_WIDTH // 2
 
-        font = pygame.font.Font(FONT_STYLE, 22)
-
         if self.death_count == 0:
-            self.render_text("Press (S) to start playing", half_screen_width, half_screen_height, font)
+            self.render_text("Press (SPACE) to start playing", half_screen_width, half_screen_height)
         else:
-            self.render_text("Press (C) to continue playing", half_screen_width, half_screen_height + 25, font)
-            self.screen.blit(self.textScore, (100, 50))
-            self.screen.blit(self.count_morte, (100, 80))
-            self.render_text("Press (S) to new playing", half_screen_width, half_screen_height - 25, font)
+            self.render_text("Press (SPACE) to new playing", half_screen_width, half_screen_height - 25)
+            self.render_text("Press (ENTER) to continue playing", half_screen_width, half_screen_height + 25)
+            self.render_text("Press (ESC) to exit game", half_screen_width, half_screen_height + 75)
+            self.screen.blit(self.textScore, (half_screen_width - 450, half_screen_height - 250))
+            self.screen.blit(self.textMax, (half_screen_width - 450, half_screen_height - 220))
+            self.screen.blit(self.textDeath, (half_screen_width - 450, half_screen_height - 190))
+            
 
         pygame.display.update()
 
@@ -136,12 +141,14 @@ class Game:
                 self.playing = False
                 self.executing = False
             elif event.type == pygame.KEYDOWN:
-                if pygame.key.get_pressed()[pygame.K_s] and self.death_count == 0:
+                if pygame.key.get_pressed()[pygame.K_SPACE] and self.death_count == 0:
                     self.run()
-                elif pygame.key.get_pressed()[pygame.K_c] and self.death_count >= 1:
+                elif pygame.key.get_pressed()[pygame.K_RETURN] and self.death_count >= 1:
                     self.run()
-                elif pygame.key.get_pressed()[pygame.K_s] and self.death_count >= 1:
+                elif pygame.key.get_pressed()[pygame.K_SPACE] and self.death_count >= 1:
                     self.death_count = 0
                     self.game_speed = 20
                     self.score = 0
                     self.run()
+                elif pygame.key.get_pressed()[pygame.K_ESCAPE] and self.death_count >= 1:
+                    event.type = pygame.QUIT
