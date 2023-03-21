@@ -6,6 +6,8 @@ TITLE = "Dino Dino"
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 30
+FONT_STYLE = "freesansbold.ttf"
+
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
 # Assets Constants
@@ -61,7 +63,22 @@ BIRD = [
     pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird2.png")),
 ]
 
-CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
+BIRD_RED = [
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird_red1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird_red2.png")),
+]
+
+BIRD_GREEN = [
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird_green1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird_green2.png")),
+]
+
+BIRD_BLUE = [
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird_blue1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird_blue2.png")),
+]
+
+CLOUD = [pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))]
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 
