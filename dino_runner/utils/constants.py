@@ -1,6 +1,5 @@
 import pygame
 import os
-
 # Global Constants
 TITLE = "Dino Dino"
 SCREEN_HEIGHT = 600
@@ -18,6 +17,12 @@ RUNNING = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
 ]
 
+MEGA_RUN = [
+    pygame.image.load(os.path.join(IMG_DIR, "mega/megaRun1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "mega/megaRun2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "mega/megaRun3.png")),
+]
+
 RUNNING_SHIELD = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1Shield.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
@@ -29,6 +34,9 @@ RUNNING_HAMMER = [
 ]
 
 JUMPING = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJump.png"))
+
+MEGA_JUMP = pygame.image.load(os.path.join(IMG_DIR, "mega/megaJump.png"))
+
 JUMPING_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpShield.png"))
 JUMPING_HAMMER = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpHammer.png"))
 
@@ -36,6 +44,8 @@ DUCKING = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
 ]
+
+MEGA_DUCK = pygame.image.load(os.path.join(IMG_DIR, "mega/megaDuck.png"))
 
 DUCKING_SHIELD = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Shield.png")),
@@ -52,10 +62,16 @@ SMALL_CACTUS = [
     pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus2.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus3.png")),
 ]
+
 LARGE_CACTUS = [
     pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus1.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus2.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus3.png")),
+]
+LARGE_CANO = [
+    pygame.image.load(os.path.join(IMG_DIR, "mega/LargeCano1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "mega/LargeCano2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "mega/LargeCano3.png")),
 ]
 
 BIRD = [
@@ -84,6 +100,19 @@ HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
+MBG = pygame.image.load(os.path.join(IMG_DIR, 'mega/megaBackground.png'))
+
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
+
+
+SOUND = [
+    os.path.join(IMG_DIR,"music/megalovania.mp3"),
+    os.path.join(IMG_DIR,"music/BoxCat.mp3"),
+]
+
+JUMP_SOUND = os.path.join(IMG_DIR,"sounds/mario_jump.mp3")
+
+DEATH_SOUND = os.path.join(IMG_DIR, "sounds/pacman_death.mp3")
+
 
 DEFAULT_TYPE = "default"

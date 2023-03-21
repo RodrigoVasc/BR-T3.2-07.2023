@@ -1,8 +1,9 @@
 import pygame
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, FONT_STYLE
+from dino_runner.utils.constants import BG, MBG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, FONT_STYLE, SOUND
 from dino_runner.components.dino import Dino
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
+from dino_runner.components.soundtrack import Music
 
 half_screen_heigth = SCREEN_HEIGHT // 2
 half_screen_width = SCREEN_WIDTH // 2
@@ -100,13 +101,23 @@ class Game:
         textDeath_rect.center = (750, 50)
 
     def draw_background(self):
-        image_width = BG.get_width()
-        self.screen.blit(BG, (self.x_pos_bg, self.y_pos_bg))
-        self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
+        self.screen.blit(MBG, (self.x_pos_bg, self.y_pos_bg))
+        image_width = MBG.get_width()
+        self.screen.blit(MBG, (image_width + self.x_pos_bg, self.y_pos_bg))
         if self.x_pos_bg <= -image_width:
-            self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
+            self.screen.blit(MBG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
         self.x_pos_bg -= self.game_speed
+
+# ----------------------VERSÃO DO DINO--------------------------------------------
+    #def draw_background(self):
+    #    image_width = BG.get_width()
+    #    self.screen.blit(BG, (self.x_pos_bg, self.y_pos_bg))
+    #    self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
+    #    if self.x_pos_bg <= -image_width:
+    #        self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
+    #        self.x_pos_bg = 0
+    #    self.x_pos_bg -= self.game_speed
 
     def render_text(self, message, x, y):
         text = self.font.render(message, True, (0,0,0))
@@ -121,8 +132,11 @@ class Game:
         half_screen_width = SCREEN_WIDTH // 2
 
         if self.death_count == 0:
+    
             self.render_text("Press (SPACE) to start playing", half_screen_width, half_screen_height)
+            
         else:
+
             self.render_text("Press (SPACE) to new playing", half_screen_width, half_screen_height - 25)
             self.render_text("Press (ENTER) to continue playing", half_screen_width, half_screen_height + 25)
             self.render_text("Press (ESC) to exit game", half_screen_width, half_screen_height + 75)
@@ -130,7 +144,6 @@ class Game:
             self.screen.blit(self.textMax, (half_screen_width - 450, half_screen_height - 220))
             self.screen.blit(self.textDeath, (half_screen_width - 450, half_screen_height - 190))
             
-
         pygame.display.update()
 
         self.handle_events_on_menu()
@@ -142,10 +155,13 @@ class Game:
                 self.executing = False
             elif event.type == pygame.KEYDOWN:
                 if pygame.key.get_pressed()[pygame.K_SPACE] and self.death_count == 0:
+                    Music.play_music(self)
                     self.run()
                 elif pygame.key.get_pressed()[pygame.K_RETURN] and self.death_count >= 1:
+                    Music.play_music(self)
                     self.run()
                 elif pygame.key.get_pressed()[pygame.K_SPACE] and self.death_count >= 1:
+                    Music.play_music(self)
                     self.death_count = 0
                     self.game_speed = 20
                     self.score = 0
