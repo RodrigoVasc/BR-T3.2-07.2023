@@ -19,7 +19,7 @@ MEGA_RUN = [
     pygame.image.load(os.path.join(IMG_DIR, "mega_run/megaRun3.png")),
 ]
 
-MOTO_JUMP = pygame.image.load(os.path.join(IMG_DIR, "mega_run/mega_moto3.png"))
+MOTO_JUMP = pygame.image.load(os.path.join(IMG_DIR, "mega_run/mega_motojump.png"))
 
 MOTO_DUCK = pygame.image.load(os.path.join(IMG_DIR, "mega_run/mega_moto3.png"))
 
@@ -29,32 +29,11 @@ MOTO_RUN = [
     pygame.image.load(os.path.join(IMG_DIR, "mega_run/mega_moto3.png")),
 ]
 
-#RUNNING_SHIELD = [
-#    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1Shield.png")),
-#    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
-#]
-
-#RUNNING_HAMMER = [
-#    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Hammer.png")),
-#    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
-#]
-
 MEGA_JUMP = pygame.image.load(os.path.join(IMG_DIR, "mega_jump/megaJump.png"))
 
-#JUMPING_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpShield.png"))
-#JUMPING_HAMMER = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpHammer.png"))
 
 MEGA_DUCK = pygame.image.load(os.path.join(IMG_DIR, "mega_duck/megaDuck.png"))
 
-#DUCKING_SHIELD = [
-#    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Shield.png")),
-#    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
-#]
-
-#DUCKING_HAMMER = [
-#    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Hammer.png")),
-#    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
-#]
 
 SMALL_ROBOT = [
     pygame.image.load(os.path.join(IMG_DIR, "mega_enemy/mega_robo1.png")),

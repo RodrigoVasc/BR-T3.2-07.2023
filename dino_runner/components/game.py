@@ -43,7 +43,6 @@ class Game:
         
 
     def run(self):
-        # Game loop: events - update - draw
         self.playing = True
         self.reset_game()
         while self.playing:
@@ -92,7 +91,6 @@ class Game:
         if self.player.has_power_up:
             time_to_show = round((self.player.power_up_time_up - pygame.time.get_ticks())/1000, 2)
             if time_to_show >=0:
-                
                 font = pygame.font.Font(FONT_STYLE, 22)
                 text = font.render(f"Power Up: {time_to_show}", True, (255,0,0))
                 text_rect = text.get_rect()

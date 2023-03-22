@@ -60,7 +60,7 @@ class Dino:
         self.dino_duck = False
 
     def update(self, user_input):
-
+        
         if (user_input[pygame.K_UP] or user_input[pygame.K_SPACE] or user_input[pygame.K_w]) and not self.dino_jump:
             Music.play_sound(self, JUMP_SOUND, 0.1)
             self.dino_jump = True
