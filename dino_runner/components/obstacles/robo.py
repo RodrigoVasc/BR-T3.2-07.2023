@@ -26,7 +26,7 @@ class Larg_robo(Obstacle):
         self.contador = 0
 
     def draw(self, screen):
-        if self.contador < 5:
+        if self.contador <= 5:
             screen.blit(self.image[0], (self.rect.x, self.rect.y))
         elif self.contador > 5:
             screen.blit(self.image[1], (self.rect.x, self.rect.y))

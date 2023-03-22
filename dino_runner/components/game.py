@@ -1,6 +1,7 @@
 import pygame
 
-from dino_runner.utils.constants import BG, MBG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, FONT_STYLE, SOUND
+from dino_runner.components.power_ups.power_up_manager import PowerUpManager
+from dino_runner.utils.constants import MBG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, FONT_STYLE, DEFAULT_TYPE
 from dino_runner.components.dino import Dino
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.soundtrack import Music
@@ -25,6 +26,7 @@ class Game:
         self.font = pygame.font.Font(FONT_STYLE, 22)
         self.score = 0
         self.death_count = 0
+        self.power_up = PowerUpManager()
 
         
         self.player = Dino()
@@ -51,6 +53,7 @@ class Game:
 
     def reset_game(self):
         self.obstacle_manager.reset_obstacles()
+        self.power_up.reset_power_ups()
 
     def events(self):
         for event in pygame.event.get():
@@ -60,9 +63,9 @@ class Game:
     def update(self):
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
-
         self.obstacle_manager.update(self)  
-        self.update_score()  
+        self.update_score()
+        self.power_up.update(self)
         
     def update_score(self):
         self.score += 1
@@ -78,12 +81,30 @@ class Game:
         self.draw_score()
         self.draw_scoreRank()
         self.draw_death()
+        self.draw_power_up_time()
         self.obstacle_manager.draw(self.screen)
+        self.power_up.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
 
+        
+    def draw_power_up_time(self):
+        if self.player.has_power_up:
+            time_to_show = round((self.player.power_up_time_up - pygame.time.get_ticks())/1000, 2)
+            if time_to_show >=0:
+                
+                font = pygame.font.Font(FONT_STYLE, 22)
+                text = font.render(f"Power Up: {time_to_show}", True, (255,0,0))
+                text_rect = text.get_rect()
+                text_rect.x = 425
+                text_rect.y = 100
+                self.screen.blit(text, text_rect)
+            else:
+                self.player.has_power_up = False
+                self.player.type = DEFAULT_TYPE
+        
     def draw_score(self):
-        self.textScore = self.font.render(f"Score: {self.score}", True, (0,0,0))
+        self.textScore = self.font.render(f"Score: {self.score}", True, (0,250,0))
         textScore_rect = self.textScore.get_rect()
         textScore_rect.center = (1000, 15)
         self.screen.blit(self.textScore, textScore_rect)
@@ -109,18 +130,8 @@ class Game:
             self.x_pos_bg = 0
         self.x_pos_bg -= self.game_speed
 
-# ----------------------VERSÃO DO DINO--------------------------------------------
-    #def draw_background(self):
-    #    image_width = BG.get_width()
-    #    self.screen.blit(BG, (self.x_pos_bg, self.y_pos_bg))
-    #    self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
-    #    if self.x_pos_bg <= -image_width:
-    #        self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
-    #        self.x_pos_bg = 0
-    #    self.x_pos_bg -= self.game_speed
-
     def render_text(self, message, x, y):
-        text = self.font.render(message, True, (0,0,0))
+        text = self.font.render(message, True, (250,0,0))
         text_rect = text.get_rect()
         text_rect.center = (x, y)
         self.screen.blit(text, text_rect)
