@@ -69,17 +69,16 @@ class Dino:
             self.dino_duck = True
             self.dino_run = False
             
-        elif user_input[pygame.K_RIGHT]:
+        if user_input[pygame.K_RIGHT] or user_input[pygame.K_d]:
             if self.dino_rect.x < 1100:
-                self.dino_rect.x += 5 
+                self.dino_rect.x += 10
             else:
-                self.dino_rect.x = 1098
-        elif user_input[pygame.K_LEFT]:
+                self.dino_rect.x = 1099
+        elif user_input[pygame.K_LEFT] or user_input[pygame.K_a]:
             if self.dino_rect.x > 0:
-
-                self.dino_rect.x -= 5
+                self.dino_rect.x -= 10
             else:
-                self.dino_rect.x = 2            
+                self.dino_rect.x = 1
             
         elif not self.dino_jump and not self.dino_duck:
             self.dino_run = True
