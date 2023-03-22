@@ -19,7 +19,7 @@ class Game:
         self.scores = []
         self.game_speed = 20
         self.x_pos_bg = 0
-        self.y_pos_bg = 380
+        self.y_pos_bg = 0
         self.x_pos_cloud = 0
         self.y_pos_cloud = 35
         self.font = pygame.font.Font(FONT_STYLE, 22)
@@ -72,7 +72,7 @@ class Game:
 
     def draw(self):
         self.clock.tick(FPS)
-        self.screen.fill((255, 255, 255))
+        self.screen.fill((100, 150, 255))
         self.draw_background()
         self.player.draw(self.screen)
         self.draw_score()
@@ -85,14 +85,14 @@ class Game:
     def draw_score(self):
         self.textScore = self.font.render(f"Score: {self.score}", True, (0,0,0))
         textScore_rect = self.textScore.get_rect()
-        textScore_rect.center = (950, 50)
+        textScore_rect.center = (1000, 15)
         self.screen.blit(self.textScore, textScore_rect)
 
     def draw_scoreRank(self):
         self.scores.append(self.score)
         self.textMax = self.font.render(f"Max score: {max(self.scores)}", True, (0,0,0))
         textMax_rect = self.textMax.get_rect()
-        textMax_rect.center = (750, 50)
+        textMax_rect.center = (850, 15)
         self.screen.blit(self.textMax, textMax_rect)
 
     def draw_death(self):

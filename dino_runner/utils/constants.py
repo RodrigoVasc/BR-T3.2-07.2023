@@ -63,6 +63,17 @@ SMALL_CACTUS = [
     pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus3.png")),
 ]
 
+SMALL_ROBOT = [
+    pygame.image.load(os.path.join(IMG_DIR, "mega/mega_robo1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "mega/mega_robo2.png")),
+    ]
+
+LARGE_ROBOT =[
+    pygame.image.load(os.path.join(IMG_DIR, "mega/mega_largRobo1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "mega/mega_largRobo2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "mega/mega_largRobo3.png")),
+    ]
+
 LARGE_CACTUS = [
     pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus1.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus2.png")),
@@ -94,13 +105,23 @@ BIRD_BLUE = [
     pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird_blue2.png")),
 ]
 
-CLOUD = [pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))]
+MEGA_VESPA =[
+    pygame.image.load(os.path.join(IMG_DIR, "mega/mega_vespa1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "mega/mega_vespa2.png")),
+]
+
+MEGA_BIRD = [
+    pygame.image.load(os.path.join(IMG_DIR, "mega/mega_bird1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "mega/mega_bird2.png")),
+]
+
+CLOUD = [pygame.image.load(os.path.join(IMG_DIR, 'mega/mega_cloud2.png'))]
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
-MBG = pygame.image.load(os.path.join(IMG_DIR, 'mega/megaBackground.png'))
+MBG = pygame.image.load(os.path.join(IMG_DIR, 'mega/back.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 

@@ -3,14 +3,16 @@ import random
 from dino_runner.components.obstacles.cactus import Cactus
 from dino_runner.components.obstacles.bird import Bird
 from dino_runner.components.obstacles.cloud import Cloud
+from dino_runner.components.obstacles.robo import Small_robo, Larg_robo
 from dino_runner.components.soundtrack import Music
-from dino_runner.utils.constants import SMALL_CACTUS, LARGE_CACTUS,LARGE_CANO, BIRD, CLOUD, BIRD_RED, BIRD_GREEN, BIRD_BLUE, DEATH_SOUND
+from dino_runner.utils.constants import SMALL_CACTUS,SMALL_ROBOT,LARGE_ROBOT ,LARGE_CACTUS,LARGE_CANO, CLOUD, MEGA_VESPA, MEGA_BIRD ,BIRD, BIRD_RED, BIRD_GREEN, BIRD_BLUE, DEATH_SOUND
 
 class ObstacleManager():
     def __init__(self):
         self.obstacle = []
         self.cloud = []
-        self.Bird_choice = [BIRD, BIRD_RED, BIRD_GREEN, BIRD_BLUE]
+        #self.Bird_choice = [BIRD, BIRD_RED, BIRD_GREEN, BIRD_BLUE]
+        self.Bird_choice = [MEGA_VESPA, MEGA_BIRD]
 
 
     def update(self, game):
@@ -21,11 +23,14 @@ class ObstacleManager():
 
         if len (self.obstacle) == 0:
             if self.num == 0:
-                self.obstacle.append(Cactus(SMALL_CACTUS, 325))
+                self.obstacle.append(Small_robo(SMALL_ROBOT, 480))
+                #self.obstacle.append(Cactus(SMALL_CACTUS, 325))
             if self.num == 1:
-                self.obstacle.append(Cactus(LARGE_CANO, 270))
+                self.obstacle.append(Larg_robo(LARGE_ROBOT, 460))
             if self.num == 2:
                 self.obstacle.append(Bird(random.choice(self.Bird_choice)))
+                #self.obstacle.append(Bird(MEGA_VESPA))
+
 
         for obstacle in self.obstacle:
             obstacle.update(game.game_speed, self.obstacle)

@@ -4,7 +4,7 @@ from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING, MEGA_RUN, MEG
 from dino_runner.components.soundtrack import Music
 
 X_POS = 80
-Y_POS = 330
+Y_POS = 480
 JUMP_VEL = 8.5
 
 class Dino:
@@ -74,12 +74,11 @@ class Dino:
     #        self.jump_vel = JUMP_VEL
     
 
-
     def duck(self):
         self.image = MEGA_DUCK
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = X_POS
-        self.dino_rect.y = 345
+        self.dino_rect.y = 485
         self.dino_duck = False
 
 
