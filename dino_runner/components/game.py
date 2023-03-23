@@ -139,9 +139,10 @@ class Game:
             if self.timer_start_time is not None:
                 elapsed_time = pygame.time.get_ticks() - self.timer_start_time
                 remaining_time = max(self.timer_duration - elapsed_time, 0) // 1000
-                self.textTimer = self.font.render(f"Continue? {remaining_time} ", True, (40, 50, 100))
-                text_rect = self.textTimer.get_rect()
-                self.screen.blit(self.textTimer, text_rect)
+                self.textTimer = self.font.render(f"Continue? {remaining_time} ", True, (100,150,255))
+                textTimer_rect = self.textTimer.get_rect()
+                textTimer_rect.center = (555, 350)
+                self.screen.blit(self.textTimer, textTimer_rect)
             if remaining_time == 0:
                 pygame.display.QUIT()
     
@@ -178,13 +179,14 @@ class Game:
             self.screen.fill((0,0,0))
             self.show_overMenu()
             self.render_text("Creditos: Rodrigo Vasco Luna Moraes", half_screen_width - 325, half_screen_height + 275)
-            self.render_text("Press (SPACE) to new playing", half_screen_width, half_screen_height + 50)
-            self.render_text("Press (ENTER) to continue playing", half_screen_width, half_screen_height + 100)
-            self.render_text("Press (ESC) to exit game", half_screen_width, half_screen_height + 150)
+            self.render_text("Press (SPACE) to new playing", half_screen_width, half_screen_height + 100)
+            self.render_text("Press (ENTER) to continue playing", half_screen_width, half_screen_height + 150)
+            self.render_text("Press (ESC) to exit game", half_screen_width, half_screen_height + 200)
             self.screen.blit(self.textScore, (half_screen_width - 450, half_screen_height - 250))
             self.screen.blit(self.textMax, (half_screen_width - 450, half_screen_height - 220))
             self.screen.blit(self.textDeath, (half_screen_width - 450, half_screen_height - 190))
             self.continue_timer()
+         
             
         pygame.display.update()
 
