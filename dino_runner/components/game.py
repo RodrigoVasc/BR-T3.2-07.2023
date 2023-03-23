@@ -60,6 +60,8 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
+                pygame.display.quit()
+                pygame.quit()
 
     def update(self):
         user_input = pygame.key.get_pressed()
@@ -70,6 +72,7 @@ class Game:
         self.life_points()
         if self.death_count > 0 and self.timer_start_time is None:
             self.timer_start_time = pygame.time.get_ticks()
+
     def update_score(self):
         self.score += 1
     
@@ -187,7 +190,6 @@ class Game:
             self.screen.blit(self.textDeath, (half_screen_width - 450, half_screen_height - 190))
             self.continue_timer()
          
-            
         pygame.display.update()
 
         self.handle_events_on_menu()
@@ -211,5 +213,5 @@ class Game:
                     self.score = 0
                     self.run()
               
-                elif pygame.key.get_pressed()[pygame.K_ESCAPE] and self.death_count >= 1 or self.death_count == 0:
+                elif pygame.key.get_pressed()[pygame.K_ESCAPE] and self.death_count >=0:
                     event.type = pygame.QUIT

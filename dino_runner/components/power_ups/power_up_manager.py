@@ -27,7 +27,6 @@ class PowerUpManager:
         player = game.player
         
         for power_up in self.power_ups:
-            #power_up.update(game.game_speed, self.power_ups)
             
             if player.dino_rect.colliderect(power_up.rect):
                 power_up.start_time = pygame.time.get_ticks()
@@ -42,7 +41,6 @@ class PowerUpManager:
         self.life_power_up(game.score)
         
         for life_up in self.life_ups:
-            #life_up.update(game.game_speed, self.life_ups)
             
             if player.dino_rect.colliderect(life_up.rect):
                 player.life_up = True

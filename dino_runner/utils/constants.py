@@ -1,7 +1,7 @@
 import pygame
 import os
 
-TITLE = "DinoMan"
+TITLE = "Mega Man Runner"
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 30

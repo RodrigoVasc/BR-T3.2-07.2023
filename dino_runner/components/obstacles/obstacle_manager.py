@@ -1,5 +1,6 @@
 import pygame
 import random
+
 from dino_runner.components.obstacles.cloud import Cloud
 from dino_runner.components.obstacles.robo import Small_robo, Larg_robo
 from dino_runner.components.soundtrack import Music
