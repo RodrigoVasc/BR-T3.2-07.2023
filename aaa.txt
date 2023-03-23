@@ -1,0 +1,11 @@
+Requerimentos para o projeto final
+
+Obrigatório
+Adicionar outros tipos de power_up por exemplo
+Identificar e refatorizar o codigo que esta duplicado por exemplo os textos presentes no game.py, ou em alguns casos como vimos repetiram classes e funções
+Menu
+
+Revisar e entender o código relacionado ao PowerUp
+
+Opcional
+moedas

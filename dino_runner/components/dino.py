@@ -1,5 +1,4 @@
 import pygame
-
 from dino_runner.utils.constants import MEGA_RUN, MEGA_DUCK, MEGA_JUMP, JUMP_SOUND,DEFAULT_TYPE, MOTO_TYPE, MOTO_RUN, MOTO_JUMP, MOTO_DUCK
 from dino_runner.components.soundtrack import Music
 
@@ -24,7 +23,8 @@ class Dino:
         self.step_index = 0
         self.jump_vel = JUMP_VEL
         self.has_power_up = False
-        
+        self.life_up = False
+
     def run(self):
         if self.step_index < 5:
             self.image = RUN_IMG[self.type][0]
@@ -33,10 +33,12 @@ class Dino:
         elif self.step_index > 15: 
             self.image = RUN_IMG[self.type][2]
             
-        self.dino_rect = self.image.get_rect()
-        self.dino_rect.x = X_POS
-        self.dino_rect.y = Y_POS
         self.step_index+=1
+
+        if self.image == RUN_IMG[MOTO_TYPE][0] or self.image == RUN_IMG[MOTO_TYPE][1] or self.image == RUN_IMG[MOTO_TYPE][2]:
+           self.dino_rect.y = Y_POS - 20
+        else:
+            self.dino_rect.y = Y_POS
 
         if self.step_index > 20:
           self.step_index = 0
@@ -54,8 +56,6 @@ class Dino:
 
     def duck(self):
         self.image = DUCK_IMG[self.type]
-        self.dino_rect = self.image.get_rect()
-        self.dino_rect.x = X_POS
         self.dino_rect.y = 485
         self.dino_duck = False
 
@@ -65,20 +65,23 @@ class Dino:
             Music.play_sound(self, JUMP_SOUND, 0.1)
             self.dino_jump = True
             self.dino_run = False
-        elif (user_input[pygame.K_DOWN] or user_input[pygame.K_s]) and not self.dino_jump:
+        if (user_input[pygame.K_DOWN] or user_input[pygame.K_s]) and not self.dino_jump:
             self.dino_duck = True
             self.dino_run = False
             
+        elif user_input[pygame.K_DOWN] and self.dino_jump:
+            self.jump_vel -= 2
+         
         if user_input[pygame.K_RIGHT] or user_input[pygame.K_d]:
-            if self.dino_rect.x < 1100:
+            if self.dino_rect.x < 1050:
                 self.dino_rect.x += 10
             else:
-                self.dino_rect.x = 1099
+                self.dino_rect.x = 1049
         elif user_input[pygame.K_LEFT] or user_input[pygame.K_a]:
             if self.dino_rect.x > 0:
                 self.dino_rect.x -= 10
             else:
-                self.dino_rect.x = 1
+                self.dino_rect.x = 3
             
         elif not self.dino_jump and not self.dino_duck:
             self.dino_run = True
@@ -92,3 +95,7 @@ class Dino:
 
     def draw(self, screen):
         screen.blit(self.image, (self.dino_rect.x,self.dino_rect.y))
+        
+    def reset_dino_position(self):
+        self.dino_rect.x = X_POS
+        self.dino_rect.y = Y_POS
